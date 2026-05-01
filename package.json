@@ -4,6 +4,9 @@
     "url": "https://github.com/echecsjs/number-of-wins/issues"
   },
   "description": "Win-counting tiebreaks for chess tournaments following FIDE rules. Includes Number of Wins, Games Won, Games with Black, Games Won with Black, Rounds Elected to Play, and Standard Points. Zero dependencies.",
+  "peerDependencies": {
+    "@echecs/tournament": "^2.0.0"
+  },
   "devDependencies": {
     "@echecs/tournament": "^2.1.2",
     "@eslint/js": "^10.0.1",
