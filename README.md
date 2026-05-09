@@ -3,6 +3,7 @@
 [![npm](https://img.shields.io/npm/v/@echecs/number-of-wins)](https://www.npmjs.com/package/@echecs/number-of-wins)
 [![Coverage](https://codecov.io/gh/echecsjs/number-of-wins/branch/main/graph/badge.svg)](https://codecov.io/gh/echecsjs/number-of-wins)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Spec](https://img.shields.io/badge/Spec-FIDE-green.svg)](SPEC.md)
 
 **Number of Wins** is a TypeScript library implementing win-counting tiebreaks
 for chess tournaments, following the
