@@ -1,18 +1,19 @@
-import { gamesForPlayer } from './utilities.js';
+import { gamesForPlayer, scoreFor } from './utilities.js';
 
-import type { Game } from './types.js';
+import type { CompletedRound, Player } from '@echecs/tournament';
 
-function standardPoints(player: string, games: Game[][]): number {
+function standardPoints(
+  player: string,
+  rounds: CompletedRound[],
+  _players: Player[],
+): number {
   let total = 0;
-  for (const g of gamesForPlayer(player, games)) {
-    if (g.black === g.white) {
-      continue;
-    }
-    const playerResult = g.white === player ? g.result : 1 - g.result;
-    const opponentResult = 1 - playerResult;
-    if (playerResult > opponentResult) {
+  for (const g of gamesForPlayer(player, rounds)) {
+    const playerScore = scoreFor(player, g);
+    const opponentScore = 1 - playerScore;
+    if (playerScore > opponentScore) {
       total += 1;
-    } else if (playerResult === opponentResult) {
+    } else if (playerScore === opponentScore) {
       total += 0.5;
     }
   }
@@ -21,4 +22,10 @@ function standardPoints(player: string, games: Game[][]): number {
 
 export { standardPoints, standardPoints as tiebreak };
 
-export { type GameKind, type Player, type Result, type Game } from './types.js';
+export type {
+  Bye,
+  CompletedRound,
+  Game,
+  Pairing,
+  Player,
+} from '@echecs/tournament';
