@@ -1,13 +1,28 @@
-import { gamesForPlayer } from './utilities.js';
+import type { CompletedRound, Player } from '@echecs/tournament';
 
-import type { Game } from './types.js';
-
-function roundsElectedToPlay(player: string, games: Game[][]): number {
-  const playerGames = gamesForPlayer(player, games);
-  const byeGames = playerGames.filter((g) => g.black === g.white);
-  return playerGames.length - byeGames.length;
+function roundsElectedToPlay(
+  player: string,
+  rounds: CompletedRound[],
+  _players: Player[],
+): number {
+  let count = 0;
+  for (const round of rounds) {
+    for (const g of round.games) {
+      if (g.white === player || g.black === player) {
+        count += 1;
+        break;
+      }
+    }
+  }
+  return count;
 }
 
 export { roundsElectedToPlay, roundsElectedToPlay as tiebreak };
 
-export { type GameKind, type Player, type Result, type Game } from './types.js';
+export type {
+  Bye,
+  CompletedRound,
+  Game,
+  Pairing,
+  Player,
+} from '@echecs/tournament';

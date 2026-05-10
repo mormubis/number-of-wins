@@ -1,15 +1,15 @@
 import { gamesForPlayer } from './utilities.js';
 
-import type { Game } from './types.js';
+import type { CompletedRound, Player } from '@echecs/tournament';
 
-function gamesWonWithBlack(player: string, games: Game[][]): number {
+function gamesWonWithBlack(
+  player: string,
+  rounds: CompletedRound[],
+  _players: Player[],
+): number {
   let count = 0;
-  for (const g of gamesForPlayer(player, games)) {
-    if (g.black === g.white) {
-      continue;
-    }
-    // black wins when result (from white's perspective) = 0
-    if (g.black === player && g.result === 0) {
+  for (const g of gamesForPlayer(player, rounds)) {
+    if (g.black === player && g.result === 'black') {
       count += 1;
     }
   }
@@ -18,4 +18,10 @@ function gamesWonWithBlack(player: string, games: Game[][]): number {
 
 export { gamesWonWithBlack, gamesWonWithBlack as tiebreak };
 
-export { type GameKind, type Player, type Result, type Game } from './types.js';
+export type {
+  Bye,
+  CompletedRound,
+  Game,
+  Pairing,
+  Player,
+} from '@echecs/tournament';
