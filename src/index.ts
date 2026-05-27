@@ -1,12 +1,8 @@
 import { gamesForPlayer, scoreFor } from './utilities.js';
 
-import type { CompletedRound, Player } from '@echecs/tournament';
+import type { Tiebreak } from '@echecs/tournament';
 
-function numberOfWins(
-  player: string,
-  rounds: CompletedRound[],
-  _players: Player[],
-): number {
+const numberOfWins: Tiebreak = (player, rounds, _players) => {
   let count = 0;
   for (const g of gamesForPlayer(player, rounds)) {
     if (scoreFor(player, g) === 1) {
@@ -14,7 +10,7 @@ function numberOfWins(
     }
   }
   return count;
-}
+};
 
 export { numberOfWins, numberOfWins as tiebreak };
 
