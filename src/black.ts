@@ -1,12 +1,8 @@
 import { gamesForPlayer } from './utilities.js';
 
-import type { CompletedRound, Player } from '@echecs/tournament';
+import type { Tiebreak } from '@echecs/tournament';
 
-function gamesPlayedWithBlack(
-  player: string,
-  rounds: CompletedRound[],
-  _players: Player[],
-): number {
+const gamesPlayedWithBlack: Tiebreak = (player, rounds, _players) => {
   let count = 0;
   for (const g of gamesForPlayer(player, rounds)) {
     if (g.black === player) {
@@ -14,7 +10,7 @@ function gamesPlayedWithBlack(
     }
   }
   return count;
-}
+};
 
 export { gamesPlayedWithBlack, gamesPlayedWithBlack as tiebreak };
 

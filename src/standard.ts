@@ -1,12 +1,8 @@
 import { gamesForPlayer, scoreFor } from './utilities.js';
 
-import type { CompletedRound, Player } from '@echecs/tournament';
+import type { Tiebreak } from '@echecs/tournament';
 
-function standardPoints(
-  player: string,
-  rounds: CompletedRound[],
-  _players: Player[],
-): number {
+const standardPoints: Tiebreak = (player, rounds, _players) => {
   let total = 0;
   for (const g of gamesForPlayer(player, rounds)) {
     const playerScore = scoreFor(player, g);
@@ -18,7 +14,7 @@ function standardPoints(
     }
   }
   return total;
-}
+};
 
 export { standardPoints, standardPoints as tiebreak };
 

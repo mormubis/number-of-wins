@@ -1,10 +1,6 @@
-import type { CompletedRound, Player } from '@echecs/tournament';
+import type { Tiebreak } from '@echecs/tournament';
 
-function roundsElectedToPlay(
-  player: string,
-  rounds: CompletedRound[],
-  _players: Player[],
-): number {
+const roundsElectedToPlay: Tiebreak = (player, rounds, _players) => {
   let count = 0;
   for (const round of rounds) {
     for (const g of round.games) {
@@ -15,7 +11,7 @@ function roundsElectedToPlay(
     }
   }
   return count;
-}
+};
 
 export { roundsElectedToPlay, roundsElectedToPlay as tiebreak };
 
